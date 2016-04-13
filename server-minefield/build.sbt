@@ -1,4 +1,4 @@
-name := """play-java"""
+name := """server-minefield"""
 
 version := "1.0-SNAPSHOT"
 
