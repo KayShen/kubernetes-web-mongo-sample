@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: server-minefield
+spec:
+  replicas: 2
+  selector:
+    name: server-minefield
+  template:
+    metadata:
+      labels:
+        name: server-minefield
+      name: server-minefield
+    spec:
+      containers:
+      - imagePullPolicy: Always
+        image: eu.gcr.io/test-cg/server-minefield:test0
+        name: server-minefield
+        ports:
+        - containerPort: 8080
