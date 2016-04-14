@@ -9,13 +9,18 @@ Instructions on how to setup your cluster: https://cloud.google.com/container-en
 ## Inspect your cluster
 You can use the Kubernetes dashboard or watch your cluster from the command line: 
 - Watch connected cluster: 
-    `watch 'kubectl config view | grep "current"'`
+    `kubectl config view | grep "current" --watch`
 - Watch your pods: 
-    `watch 'kubectl get pods --namespace=minefield'`
+    `kubectl get pods --namespace=minefield --watch`
 
 
-## Nginx ingress controller meets lets encrypt
+## Ingress meets lets encrypt
 We are using the ingress controller proposed in: https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx
+See: http://kubernetes.io/docs/user-guide/ingress/
+
+On GCE with internal load balancer, follow the instruction in this tutorial:
+https://cloud.google.com/container-engine/docs/tutorials/http-balancer
+
 
 - Create namespace: 
     `kubectl create -f k8s/minefield.namespace.yaml`
