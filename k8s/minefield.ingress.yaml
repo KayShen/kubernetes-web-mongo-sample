@@ -1,14 +1,16 @@
-# An Ingress with 2 hosts and 3 endpoints
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: minefield
 spec:
+  backend:
+    serviceName: server-minefield
+    servicePort: 8080
   rules:
-  - host: <your-host-name>
-    http:
-      paths:
-      - path: /bar
-        backend:
-          serviceName: default-http-backend
-          servicePort: 80
+    - host: demo.cg.ts.egym.coffee
+      http:
+        paths:
+        - path: /play
+          backend:
+            serviceName: server-minefield
+            servicePort: 8080
