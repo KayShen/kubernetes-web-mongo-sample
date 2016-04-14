@@ -6,7 +6,8 @@ metadata:
   name: server-minefield
 spec:
   ports:
-    - port: 8080
+    - nodePort: 30959
+      port: 8080
       targetPort: 8080
   selector:
     name: server-minefield
