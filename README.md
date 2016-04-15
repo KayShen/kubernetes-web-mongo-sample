@@ -15,20 +15,20 @@ You can use the Kubernetes dashboard or watch your cluster from the command line
 
 
 ## Ingress meets lets encrypt
-We are using the ingress controller proposed in: https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx
 See: http://kubernetes.io/docs/user-guide/ingress/
 
-On GCE with internal load balancer, follow the instruction in this tutorial:
+We are using GCEs with internal load balancer, follow the instruction in this tutorial:
 https://cloud.google.com/container-engine/docs/tutorials/http-balancer
 
+Alternatively the nginx ingress controller proposed in: https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx can be used.
 
 - Create namespace: 
     `kubectl create -f k8s/minefield.namespace.yaml`
-- Create the default backend replication controller and service: 
-    `kubectl create -f k8s/default-http-backend.service.yaml --namespace=minefield`
-    `kubectl create -f k8s/default-http-backend.rc.yaml --namespace=minefield`
-- Create nginx ingress controller:
-    `kubectl create -f k8s/nginx-ingress-controller.rc.yaml --namespace=minefield`
 - Create a host/domain, add it to the ingress yaml and create the ingress:
-    `kubectl create -f k8s/minefield.ingress.yaml --namespace=minefield`
-
+    `kubectl create -f k8s/letsencryptor.ingress.yaml --namespace=minefield`
+- Create a tls secret:
+    `kubectl create -f k8s/letsencryptor.secret.yaml --namespace=minefield`
+    
+- Create persistent disks for letsencrpyt:
+    `gcloud compute disks create --size 100GB server-letsencryptor-workdir --project=<YOUR_PROJECT> --zone=<ZONE>`
+    `gcloud compute disks create --size 100GB server-letsencryptor-config  --project=<YOUR_PROJECT> --zone=<ZONE>`
