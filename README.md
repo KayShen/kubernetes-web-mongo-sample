@@ -31,4 +31,6 @@ Alternatively the nginx ingress controller proposed in: https://github.com/kuber
     
 - Create persistent disks for letsencrpyt:
     `gcloud compute disks create --size 100GB server-letsencryptor-workdir --project=<YOUR_PROJECT> --zone=<ZONE>`
-    `gcloud compute disks create --size 100GB server-letsencryptor-config  --project=<YOUR_PROJECT> --zone=<ZONE>`
+
+- Create the replication controller for the letsencryptor:
+    `kubectl create -f k8s/server-letsencryptor.rc.yaml --namespace=minefield`
