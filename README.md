@@ -14,8 +14,8 @@ You can use the Kubernetes dashboard or watch your cluster from the command line
     `kubectl get pods --namespace=minefield --watch`
 
 
-## Ingress meets lets encrypt
-![Alt text](https://rawgithub.com/egymgmbh/kubernetes-web-mongo-sample/master/letsencryptor/letsencryptor.svg)
+## Ingress meets Let's Encrypt
+![Alt text](Ingress meets Let's Encrypt)
 <img src="https://rawgithub.com/egymgmbh/kubernetes-web-mongo-sample/master/letsencryptor/letsencryptor.svg">
 
 See: http://kubernetes.io/docs/user-guide/ingress/
