@@ -15,7 +15,7 @@ You can use the Kubernetes dashboard or watch your cluster from the command line
 
 
 ## Ingress meets Let's Encrypt
-![Ingress meets Let's Encrypt](https://rawgithub.com/egymgmbh/kubernetes-web-mongo-sample/master/letsencryptor/letsencryptor.svg)
+![Ingress meets Let's Encrypt](letsencryptor/letsencryptor.svg)
 See: http://kubernetes.io/docs/user-guide/ingress/
 
 We are using GCEs with internal load balancer, follow the instruction in this tutorial:
