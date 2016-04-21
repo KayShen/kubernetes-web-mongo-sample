@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: mongodb-1
+  name: mongodb-3
 spec:
   replicas: 1
   selector:
-    name: mongodb-1
+    name: mongodb-3
   template:
     metadata:
       labels:
-        name: mongodb-1
-      name: mongodb-1
+        name: mongodb-3
+      name: mongodb-3
     spec:
       containers:
       - imagePullPolicy: Always
@@ -29,5 +29,5 @@ spec:
         # This GCE PD must already exist. Read README for more information
       - name: mongodb-data
         gcePersistentDisk:
-          pdName: mongodb-pd-1
+          pdName: mongodb-pd-3
           fsType: ext4
