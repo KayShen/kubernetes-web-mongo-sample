@@ -35,3 +35,18 @@ Alternatively the nginx ingress controller proposed in: https://github.com/kuber
 
 - Create the replication controller for the letsencryptor:
     `kubectl create -f k8s/server-letsencryptor.rc.yaml --namespace=minefield`
+
+
+## Setup mongodb cluster
+
+- Create persistent disk
+    `gcloud compute disks create --size 200GB mongodb-pd-1 --project=<YOUR_PROJECT> --zone=<ZONE>`
+- Inititate mongoDB replica set
+ - Ensure the mongoDB container is started with --replSet command
+ - Find the name of the pod
+    `kubectl --namespace=minefield get pods`
+ - Get a shell in the pod and initiate the replica set
+   `kubectl --namespace=minefield exec -ti mongodb-1-$$$$$`
+   `mongo`
+   `rs.initiate()`
+   
