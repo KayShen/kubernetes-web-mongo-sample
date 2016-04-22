@@ -10,14 +10,18 @@
 }
 
 @if(form != null){
-	@helper.form(action = routes.HomeController.index(), 'id -> "guestbook-entry-form") {
+	@helper.form(action = routes.HomeController.index(), 'id -> "guestbook-entry-form", 'class->"form-inline") {
 
 		@helper.input(form("alias")) { (id, name, value, args) =>
 			<input type="text" name="@name" id="@id" value="@value" placeholder="@name" class="form-control" @toHtmlArgs(args)>
 		}
 
+		@helper.input(form("message")) { (id, name, value, args) =>
+			<input type="text" name="@name" id="@id" value="@value" placeholder="@name" class="form-control" @toHtmlArgs(args)>
+		}
+
 		<button id="guestbook-entry-form-button" type="submit" title="Submit" class="btn btn-info">
-			<h4><i class="fa fa-check"></i> Submit </h4>
+			<i class="fa fa-check"></i> Submit
 		</button>
 	}
 }

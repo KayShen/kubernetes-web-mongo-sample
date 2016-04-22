@@ -21,7 +21,7 @@ public class GuestbookEntry {
 
 	private String alias;
 
-	private String text;
+	private String message;
 
 	private String color;
 
@@ -53,17 +53,18 @@ public class GuestbookEntry {
 		return alias;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
 
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
 
 	public String getColor() {
 		return color;

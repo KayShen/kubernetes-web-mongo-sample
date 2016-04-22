@@ -2,7 +2,7 @@
 @*This is the template for a bootstrap form fields. It can be included to adapt the default play form helper.*@
 <div class="@if(elements.args.get('_css)){@elements.args.get('_css)}else{form-group} @if(elements.hasErrors) {error}">
     <p class="errors">@elements.errors.mkString(", ")</p>
-    <label for="@elements.id" class="@elements.name">@elements.label</label>
+    <label for="@elements.id" class="sr-only @elements.name">@elements.label</label>
     @elements.input
     <p class="help">@elements.infos.mkString(", ")</p>
 </div>
