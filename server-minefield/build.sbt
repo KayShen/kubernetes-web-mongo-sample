@@ -9,7 +9,10 @@ scalaVersion := "2.11.7"
 libraryDependencies ++= Seq(
   javaJdbc,
   cache,
-  javaWs
+  javaWs,
+  "org.mongojack" % "mongojack" % "2.6.0",
+  "org.webjars" % "jquery" % "1.11.3",
+  "org.webjars" % "bootstrap" % "3.3.6"
 )
 
 
