@@ -12,7 +12,8 @@ libraryDependencies ++= Seq(
   javaWs,
   "org.mongojack" % "mongojack" % "2.6.0",
   "org.webjars" % "jquery" % "1.11.3",
-  "org.webjars" % "bootstrap" % "3.3.6"
+  "org.webjars" % "bootstrap" % "3.3.6",
+  "org.webjars" % "font-awesome" % "4.6.1"
 )
 
 
