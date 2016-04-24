@@ -2,7 +2,8 @@ import com.google.inject.AbstractModule;
 
 import java.time.Clock;
 
-import dao.MongoDB;
+import dao.DaoModule;
+import services.MongoDB;
 import services.ApplicationTimer;
 import services.AtomicCounter;
 import services.Counter;
@@ -28,7 +29,9 @@ public class Module extends AbstractModule {
 		bind(ApplicationTimer.class).asEagerSingleton();
 		// Set AtomicCounter as the implementation for Counter.
 		bind(Counter.class).to(AtomicCounter.class);
+
 		bind(MongoDB.class);
+		install(new DaoModule());
 	}
 
 }

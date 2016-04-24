@@ -25,13 +25,13 @@ abstract class AbstractDao<T> implements Dao<T> {
 
 	private final DB db;
 
-	protected AbstractDao(final String databaseName, final MongoClient mongoClient) {
-		if (mongoClient == null || databaseName == null || databaseName.isEmpty()) {
-			throw new IllegalArgumentException("mongoClient and databaseName must not be null or empty");
+	protected AbstractDao(final DB database, final MongoClient mongoClient) {
+		if (mongoClient == null || database == null) {
+			throw new IllegalArgumentException("mongoClient and databaseName must not be null.");
 		}
 
-		log.info("databaseName: " + databaseName);
-		this.db = mongoClient.getDB(databaseName);
+		log.info("databaseName: " + database.getName());
+		this.db = database;
 	}
 
 	protected DB getDb() {

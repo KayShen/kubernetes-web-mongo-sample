@@ -13,13 +13,14 @@ import com.mongodb.ReadPreference;
 import domain.GuestbookEntry;
 import org.joda.time.DateTime;
 import org.mongojack.JacksonDBCollection;
+import services.MongoDB;
 
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;
 
 @ThreadSafe
 @Singleton
-class GuestbookEntryDao extends AbstractDao<GuestbookEntry> {
+class GuestbookEntryDao extends AbstractDao<GuestbookEntry>{
 
 	private static final String COLLECTION_NAME = "guestbook-entry";
 
@@ -29,8 +30,8 @@ class GuestbookEntryDao extends AbstractDao<GuestbookEntry> {
 
 
 	@Inject
-	GuestbookEntryDao(final String databaseName, final MongoClient mongoClient) {
-		super(databaseName, mongoClient);
+	GuestbookEntryDao(final MongoDB mongoDB) {
+		super(mongoDB.getDatabase(), mongoDB.getMongoClient());
 
 		guestBookEntryCollection = getDb().getCollection(COLLECTION_NAME);
 

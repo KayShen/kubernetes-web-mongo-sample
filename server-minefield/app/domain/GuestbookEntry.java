@@ -6,6 +6,7 @@
 package domain;
 
 import org.mongojack.ObjectId;
+import play.data.validation.Constraints;
 
 /**
  * Common JSON property names should be placed here.
@@ -19,8 +20,12 @@ public class GuestbookEntry {
 
 	private Long timestampUpdate;
 
+	@Constraints.Required
+	@Constraints.MaxLength(2)
 	private String alias;
 
+	@Constraints.Required
+	@Constraints.MaxLength(2)
 	private String message;
 
 	private String color;
