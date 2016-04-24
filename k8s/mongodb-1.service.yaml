@@ -10,4 +10,3 @@ spec:
   selector:
     name: mongodb-1
   type: ClusterIP
-g
