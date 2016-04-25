@@ -9,7 +9,9 @@ import play.mvc.Result;
 import views.html.guestbook;
 
 import javax.inject.Inject;
+import java.awt.*;
 import java.util.List;
+import java.util.Random;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -47,9 +49,19 @@ public class GuestbookController extends Controller {
 			return badRequest(guestbook.render("Guestbook", getGuestbookEntries(10), filledGuestbookEntryForm));
 		} else {
 			GuestbookEntry guestbookEntry = filledGuestbookEntryForm.get();
+			guestbookEntry.setColor(getRandomHexColor());
 			guestbookEntryDao.save(guestbookEntry);
 			return redirect(routes.GuestbookController.getGuestbookEntries());
 		}
+	}
+
+	public String getRandomHexColor(){
+		final Random rand = new Random();
+		float r = rand.nextFloat();
+		float g = rand.nextFloat();
+		float b = rand.nextFloat();
+		Color randomColor = new Color(r, g, b);
+		return "#"+Integer.toHexString(randomColor.getRGB()).substring(2);
 	}
 
 }
