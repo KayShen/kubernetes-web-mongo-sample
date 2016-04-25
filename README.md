@@ -80,7 +80,7 @@ Alternatively the nginx ingress controller proposed in: https://github.com/kuber
     }
   - Check whether you can reach mongod via its public service name
    - 'mongo mongodb-1:27017' (the port number is *required*)
-   - 'rs.status()' should give the same output as above
+   - `rs.status()` should give the same output as above
   - Build the cluster to use public service names
    - `c = rs.conf()`
    - `c.members[0].host = "mongodb-1"`
