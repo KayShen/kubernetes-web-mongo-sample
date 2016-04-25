@@ -1,0 +1,12 @@
+@import domain.GuestbookEntry
+@*
+* Guestbook entry component
+*@
+@(guestbookEntry: GuestbookEntry)
+
+@if(guestbookEntry != null){
+	<div class="row">
+		<div class="col-md-6">@guestbookEntry.getAlias()</div>
+		<div class="col-md-6">@guestbookEntry.getMessage()</div>
+	</div>
+}

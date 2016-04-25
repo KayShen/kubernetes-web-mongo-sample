@@ -1,0 +1,11 @@
+@import domain.GuestbookEntry
+@*
+* Guestbook entry list component
+*@
+@(guestbookEntryList: List[GuestbookEntry])
+
+@if(guestbookEntryList != null) {
+	@for(entry <- guestbookEntryList) {
+		@components.guestbookEntry(entry)
+	}
+}
