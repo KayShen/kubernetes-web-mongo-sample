@@ -5,6 +5,7 @@
  */
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.mongojack.ObjectId;
 import play.data.validation.Constraints;
 
@@ -14,6 +15,7 @@ import play.data.validation.Constraints;
 public class GuestbookEntry {
 
 	@ObjectId
+	@JsonProperty(value = "_id", required = false)
 	private String id;
 
 	private Long timestampCreation;
@@ -21,11 +23,11 @@ public class GuestbookEntry {
 	private Long timestampUpdate;
 
 	@Constraints.Required
-	@Constraints.MaxLength(2)
+	@Constraints.MinLength(2)
 	private String alias;
 
 	@Constraints.Required
-	@Constraints.MaxLength(2)
+	@Constraints.MinLength(2)
 	private String message;
 
 	private String color;

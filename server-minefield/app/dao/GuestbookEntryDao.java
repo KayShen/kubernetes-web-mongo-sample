@@ -8,7 +8,6 @@ package dao;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.mongodb.DBCollection;
-import com.mongodb.MongoClient;
 import com.mongodb.ReadPreference;
 import domain.GuestbookEntry;
 import org.joda.time.DateTime;
@@ -20,7 +19,7 @@ import javax.annotation.concurrent.ThreadSafe;
 
 @ThreadSafe
 @Singleton
-class GuestbookEntryDao extends AbstractDao<GuestbookEntry>{
+public class GuestbookEntryDao extends AbstractDao<GuestbookEntry>{
 
 	private static final String COLLECTION_NAME = "guestbook-entry";
 
@@ -35,8 +34,7 @@ class GuestbookEntryDao extends AbstractDao<GuestbookEntry>{
 
 		guestBookEntryCollection = getDb().getCollection(COLLECTION_NAME);
 
-		// Let's read from primary to be sure to read the latest information.
-		guestBookEntryCollection.setReadPreference(ReadPreference.primary());
+		guestBookEntryCollection.setReadPreference(ReadPreference.nearest());
 
 		jacksonGuestbookEntryCollection = JacksonDBCollection.wrap(guestBookEntryCollection, GuestbookEntry.class, String.class);
 	}
