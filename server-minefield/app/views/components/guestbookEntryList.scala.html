@@ -5,6 +5,8 @@
 @(guestbookEntryList: List[GuestbookEntry])
 
 @if(guestbookEntryList != null) {
+	@components.guestbookEntryCount(guestbookEntryList.size())
+
 	@for(entry <- guestbookEntryList) {
 		@components.guestbookEntry(entry)
 	}

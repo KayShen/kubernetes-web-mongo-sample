@@ -1,12 +1,23 @@
 @import domain.GuestbookEntry
+@import org.joda.time.DateTime
+@import org.joda.time.format.DateTimeFormat
 @*
 * Guestbook entry component
 *@
 @(guestbookEntry: GuestbookEntry)
 
-@if(guestbookEntry != null){
+@if(guestbookEntry != null) {
 	<div class="row">
-		<div class="col-md-6">@guestbookEntry.getAlias()</div>
-		<div class="col-md-6">@guestbookEntry.getMessage()</div>
+		<div class="col-md-12">
+			<div class="well well-sm">
+				@if(guestbookEntry.getTimestampCreation != null) {
+					<span>
+						@DateTimeFormat.forPattern("YYYY-MM-dd HH:mm").print(new DateTime(guestbookEntry.getTimestampCreation))
+						|
+					</span>
+				}
+				<span class="label label-primary">@guestbookEntry.getAlias():</span> @guestbookEntry.getMessage()
+			</div>
+		</div>
 	</div>
 }

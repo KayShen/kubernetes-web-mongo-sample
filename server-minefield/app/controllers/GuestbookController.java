@@ -7,7 +7,6 @@ import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.guestbook;
-import views.html.index;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -35,21 +34,21 @@ public class GuestbookController extends Controller {
 	 * An action that retrieves all guestbook entries.
 	 */
 	public List<GuestbookEntry> getGuestbookEntries(final int count) {
-		return guestbookEntryDao.findAll();
+		return guestbookEntryDao.findAllSortByTimestampCreation(count);
 	}
 
 	public Result getGuestbookEntries(){
-		return ok(guestbook.render("Guestbook", getGuestbookEntries(10)));
+		return ok(guestbook.render("Guestbook", getGuestbookEntries(100), guestbookEntryForm));
 	}
 
 	public Result postGuestbookEntry(){
 		Form<GuestbookEntry> filledGuestbookEntryForm = guestbookEntryForm.bindFromRequest();
 		if (filledGuestbookEntryForm.hasErrors()) {
-			return badRequest(guestbook.render("Guestbook", getGuestbookEntries(10)));
+			return badRequest(guestbook.render("Guestbook", getGuestbookEntries(10), filledGuestbookEntryForm));
 		} else {
 			GuestbookEntry guestbookEntry = filledGuestbookEntryForm.get();
 			guestbookEntryDao.save(guestbookEntry);
-			return getGuestbookEntries();
+			return redirect(routes.GuestbookController.getGuestbookEntries());
 		}
 	}
 

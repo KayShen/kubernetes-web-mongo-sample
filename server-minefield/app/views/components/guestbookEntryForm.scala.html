@@ -9,6 +9,8 @@
 	FieldConstructor(bootstrapFormFields.f)
 }
 
+
+<div class="well">
 @if(form != null){
 	@helper.form(action = routes.GuestbookController.postGuestbookEntry(), 'id -> "guestbook-entry-form", 'class->"form-inline") {
 
@@ -20,8 +22,9 @@
 			<input type="text" name="@name" id="@id" value="@value" placeholder="@name" class="form-control" @toHtmlArgs(args)>
 		}
 
-		<button id="guestbook-entry-form-button" type="submit" title="Submit" class="btn btn-info" style="vertical-align: text-bottom">
+		<button id="guestbook-entry-form-button" type="submit" title="Submit" class="btn btn-info" style="vertical-align: top">
 			<i class="fa fa-check"></i> Submit
 		</button>
 	}
 }
+</div>

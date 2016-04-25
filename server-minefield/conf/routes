@@ -3,10 +3,8 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET         /                    controllers.HomeController.index
-
-GET         /guestbook           controllers.GuestbookController.getGuestbookEntries
-POST        /guestbook           controllers.GuestbookController.postGuestbookEntry
+GET         /                    controllers.GuestbookController.getGuestbookEntries
+POST        /                    controllers.GuestbookController.postGuestbookEntry
 
 # An example controller showing how to use dependency injection
 GET         /count               controllers.CountController.count
