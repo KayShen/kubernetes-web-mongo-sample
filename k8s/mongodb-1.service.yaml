@@ -6,7 +6,7 @@ spec:
   ports:
     - port: 27017
       targetPort: 27017
-      name: mongod
+      name: mongodb
   selector:
     name: mongodb-1
   type: ClusterIP
