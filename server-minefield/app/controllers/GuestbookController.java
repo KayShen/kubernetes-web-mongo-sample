@@ -15,7 +15,7 @@ import java.util.Random;
 
 /**
  * This controller contains an action to handle HTTP requests
- * to the application's home page.
+ * to the application's home page. It controlls the minefield guestbook application.
  */
 public class GuestbookController extends Controller {
 

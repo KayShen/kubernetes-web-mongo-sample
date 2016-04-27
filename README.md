@@ -11,38 +11,19 @@ Instructions on how to setup your cluster:
 ## Inspect your cluster
 You have to install `kubectl`, configure your project and created a new GKE cluster. After you have done that, you can use the k8s(Kubernetes) dashboard or watch your cluster from the command line:
 - Watch connected cluster:
-    `watch kubectl config current-context`
+    `watch 'kubectl config current-context'`
 - Watch your pods:
     `kubectl get pods --namespace=minefield --watch`
 
-Note that everything is run in the `minefield` namespace. Read more about k8s namespaces  [here](https://github.com/kubernetes/kubernetes/blob/release-1.2/docs/design/namespaces.md).
 
-
-## Ingress meets Let's Encrypt
-![Ingress meets Let's Encrypt](letsencryptor/letsencryptor.svg)
-See: http://kubernetes.io/docs/user-guide/ingress/
-
-We are using GCEs with internal load balancer, follow the instruction in this tutorial:
-https://cloud.google.com/container-engine/docs/tutorials/http-balancer
-
-Alternatively the nginx ingress controller proposed in: https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx can be used.
+## Prepare your cluster project
+The following setup will work within the `minefield` namespace. Read more about k8s namespaces  [here](https://github.com/kubernetes/kubernetes/blob/release-1.2/docs/design/namespaces.md).
 
 - Create the `minefield` namespace:
     `kubectl create -f k8s/minefield.namespace.yaml`
-- Create a host/domain, add it to the ingress yaml and create the ingress:
-    `kubectl create -f k8s/letsencryptor.ingress.yaml --namespace=minefield`
-- Create a tls secret:
-    `kubectl create -f k8s/letsencryptor.secret.yaml --namespace=minefield`
-
-- Create persistent disks for letsencrpyt:
-    `gcloud compute disks create --size 100GB server-letsencryptor-workdir --project=<YOUR_PROJECT> --zone=<ZONE>`
-
-- Create the replication controller for the letsencryptor:
-    `kubectl create -f k8s/server-letsencryptor.rc.yaml --namespace=minefield`
 
 
 ## Setup the MongoDB cluster
-
 - Create persistent disks
  - `gcloud compute disks create --size 200GB mongodb-pd-1 --project=<YOUR_PROJECT> --zone=<ZONE>`
  - `gcloud compute disks create --size 200GB mongodb-pd-2 --project=<YOUR_PROJECT> --zone=<ZONE>`
@@ -73,7 +54,7 @@ Alternatively the nginx ingress controller proposed in: https://github.com/kuber
         "members" : [
                 {
                         "_id" : 0,
-                        "name" : "mongodb-1-xsltp:27017",
+                        "name" : "mongodb-1-$$$$$:27017",
                         "health" : 1,
                         "state" : 1,
                         "stateStr" : "PRIMARY",
@@ -89,11 +70,11 @@ Alternatively the nginx ingress controller proposed in: https://github.com/kuber
    - `rs.status()` should give the same output as above
   - Build the cluster to use public service names
    - `c = rs.conf()`
-   - `c.members[0].host = "mongodb-1"`
+   - `c.members[0].host = "mongodb-1:27017"`
    - `rs.reconfig(c)` (Overwrites our host name)
    - `rs.status()` should still indicate a healthy state using "mongodb-1" as the hostname
-   - `rs.add("mongodb-2")`
-   - `rs.add("mongodb-3")`
+   - `rs.add("mongodb-2:27017")`
+   - `rs.add("mongodb-3:27017")`
    - Verify the cluster is healthy. `rs.status()` should print (with some fields omitted)
    ```
    {
@@ -130,3 +111,31 @@ Alternatively the nginx ingress controller proposed in: https://github.com/kuber
     - Connect to another replica set member and check this looks good, too
      - `mongo mongodb-2`
      - `rs.status()` should report same data as above, self being a secondary.
+
+
+## Setup 
+Setup the frondend.
+
+
+## Ingress meets Let's Encrypt
+TODO: Update and clean up.
+![Ingress meets Let's Encrypt](letsencryptor/letsencryptor.svg)
+See: http://kubernetes.io/docs/user-guide/ingress/
+
+We are using GCEs with internal load balancer, follow the instruction in this tutorial:
+https://cloud.google.com/container-engine/docs/tutorials/http-balancer
+
+Alternatively the nginx ingress controller proposed in: https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx can be used.
+
+
+- Create a host/domain, add it to the ingress yaml and create the ingress:
+    `kubectl create -f k8s/letsencryptor.ingress.yaml --namespace=minefield`
+    
+- Create a tls secret:
+    `kubectl create -f k8s/letsencryptor.secret.yaml --namespace=minefield`
+
+- Create persistent disks for letsencrpyt:
+    `gcloud compute disks create --size 100GB server-letsencryptor-workdir --project=<YOUR_PROJECT> --zone=<ZONE>`
+
+- Create the replication controller for the letsencryptor:
+    `kubectl create -f k8s/server-letsencryptor.rc.yaml --namespace=minefield`

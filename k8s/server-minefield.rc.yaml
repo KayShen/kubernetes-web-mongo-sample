@@ -16,9 +16,18 @@ spec:
       - imagePullPolicy: Always
         image: eu.gcr.io/test-cg/server-minefield:test0
         name: server-minefield
+        # Checks when the container is ready.
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 3
+        # Checks if the container is still alive.
         livenessProbe:
           httpGet:
-            path: /
+            path: /healthcheck
             port: 8080
             scheme: HTTP
           initialDelaySeconds: 30

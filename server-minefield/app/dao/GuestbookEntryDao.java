@@ -9,14 +9,10 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.mongodb.ReadPreference;
 import domain.GuestbookEntry;
-import org.bson.Document;
 import org.joda.time.DateTime;
-import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
-import org.mongojack.WriteResult;
 import services.MongoDB;
 
 import javax.annotation.Nonnull;
