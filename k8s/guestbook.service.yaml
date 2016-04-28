@@ -6,9 +6,8 @@ metadata:
   name: guestbook
 spec:
   ports:
-    - nodePort: 30959
-      port: 8080
+    - port: 80
       targetPort: 8080
   selector:
     name: guestbook
-  type: NodePort
+  type: LoadBalancer
