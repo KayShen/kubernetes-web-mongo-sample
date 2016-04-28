@@ -6,6 +6,7 @@ spec:
   replicas: 1
   selector:
     name: mongodb-1
+    db: mongodb
   template:
     metadata:
       labels:
