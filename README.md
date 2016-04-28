@@ -114,17 +114,16 @@ The following setup will work within the `minefield` namespace. Read more about 
      - `rs.status()` should report same data as above, self being a secondary.
 
 
-## Setup 
-Setup the frondend.
+## Setup the guestbook
 Build the docker image according to guestbook/README.md
 
 - Create the replication controller for the guestbook:
     `kubectl create -f k8s/guestbook.rc.yaml --namespace=minefield`
     
-    
 - Create the service for the guestbook:
     `kubectl create -f k8s/guestbook.service.yaml --namespace=minefield`
 
+The service will create a load balancer. The public IP will be visible after some time. Call `watch 'kubectl get services --all-namespaces'` to inspect.
 
 ## Ingress meets Let's Encrypt
 TODO: Update and clean up.
