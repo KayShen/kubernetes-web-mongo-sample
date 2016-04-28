@@ -26,8 +26,7 @@ printf 'kubectl create --namespace=minefield -f k8s/mongodb-3.service.yaml\n'
 sleep 1
 echo 'service "mongodb-3" created'
 
-# Create the pods
-
+# Create the RCs
 
 printf "$ "
 sleep 3
