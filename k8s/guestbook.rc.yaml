@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: server-minefield
+  name: guestbook
 spec:
   replicas: 2
   selector:
-    name: server-minefield
+    name: guestbook
   template:
     metadata:
       labels:
-        name: server-minefield
-      name: server-minefield
+        name: guestbook
+      name: guestbook
     spec:
       containers:
       - imagePullPolicy: Always
-        image: eu.gcr.io/test-cg/server-minefield:test0
-        name: server-minefield
+        image: eu.gcr.io/test-cg/guestbook:meetup-0.1
+        name: guestbook
         # Checks when the container is ready.
         readinessProbe:
           httpGet:

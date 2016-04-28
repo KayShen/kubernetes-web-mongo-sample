@@ -36,6 +36,7 @@ The following setup will work within the `minefield` namespace. Read more about 
  - `kubectl --namespace=minefield create -f k8s/mongodb-1.service.yaml`
  - `kubectl --namespace=minefield create -f k8s/mongodb-2.service.yaml`
  - `kubectl --namespace=minefield create -f k8s/mongodb-3.service.yaml`
+ - `kubectl --namespace=minefield create -f k8s/mongodb.service.yaml`
 - Inititate mongoDB replica set
  - Ensure the mongoDB container is started with --replSet command
  - Find the name of one of the pods
@@ -113,9 +114,16 @@ The following setup will work within the `minefield` namespace. Read more about 
      - `rs.status()` should report same data as above, self being a secondary.
 
 
-## Setup 
-Setup the frondend.
+## Setup the guestbook
+Build the docker image according to guestbook/README.md
 
+- Create the replication controller for the guestbook:
+    `kubectl create -f k8s/guestbook.rc.yaml --namespace=minefield`
+    
+- Create the service for the guestbook:
+    `kubectl create -f k8s/guestbook.service.yaml --namespace=minefield`
+
+The service will create a load balancer. The public IP will be visible after some time. Call `watch 'kubectl get services --all-namespaces'` to inspect.
 
 ## Ingress meets Let's Encrypt
 TODO: Update and clean up.
@@ -138,4 +146,4 @@ Alternatively the nginx ingress controller proposed in: https://github.com/kuber
     `gcloud compute disks create --size 100GB server-letsencryptor-workdir --project=<YOUR_PROJECT> --zone=<ZONE>`
 
 - Create the replication controller for the letsencryptor:
-    `kubectl create -f k8s/server-letsencryptor.rc.yaml --namespace=minefield`
+    `kubectl create -f k8s/letsencryptor.rc.yaml --namespace=minefield`

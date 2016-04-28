@@ -1,4 +1,4 @@
-name := """server-minefield"""
+name := """guestbook"""
 
 version := "1.0-SNAPSHOT"
 

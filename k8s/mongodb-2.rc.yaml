@@ -10,6 +10,7 @@ spec:
     metadata:
       labels:
         name: mongodb-2
+        db: mongodb
       name: mongodb-2
     spec:
       containers:
