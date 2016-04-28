@@ -22,4 +22,4 @@ run createDockerDir
 
 cd target/docker
 
-run docker build -t 'server-minefield' . < Dockerfile
+run docker build -t 'guestbook' . < Dockerfile
