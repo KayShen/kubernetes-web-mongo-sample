@@ -115,6 +115,14 @@ The following setup will work within the `minefield` namespace. Read more about 
 
 ## Setup 
 Setup the frondend.
+Build the docker image according to guestbook/README.md
+
+- Create the replication controller for the guestbook:
+    `kubectl create -f k8s/guestbook.rc.yaml --namespace=minefield`
+    
+    
+- Create the service for the guestbook:
+    `kubectl create -f k8s/guestbook.service.yaml --namespace=minefield`
 
 
 ## Ingress meets Let's Encrypt
@@ -138,4 +146,4 @@ Alternatively the nginx ingress controller proposed in: https://github.com/kuber
     `gcloud compute disks create --size 100GB server-letsencryptor-workdir --project=<YOUR_PROJECT> --zone=<ZONE>`
 
 - Create the replication controller for the letsencryptor:
-    `kubectl create -f k8s/server-letsencryptor.rc.yaml --namespace=minefield`
+    `kubectl create -f k8s/letsencryptor.rc.yaml --namespace=minefield`
