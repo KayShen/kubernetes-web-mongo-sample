@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     name: mongodb-3
-    db: mongodb
   template:
     metadata:
       labels:
         name: mongodb-3
+        db: mongodb
       name: mongodb-3
     spec:
       containers:
