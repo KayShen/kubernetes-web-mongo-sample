@@ -146,4 +146,4 @@ Alternatively the nginx ingress controller proposed in: https://github.com/kuber
     `gcloud compute disks create --size 100GB server-letsencryptor-workdir --project=<YOUR_PROJECT> --zone=<ZONE>`
 
 - Create the replication controller for the letsencryptor:
-    `kubectl create -f k8s/server-letsencryptor.rc.yaml --namespace=minefield`
+    `kubectl create -f k8s/letsencryptor.rc.yaml --namespace=minefield`
