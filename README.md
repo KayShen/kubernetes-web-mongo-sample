@@ -115,7 +115,7 @@ The following setup will work within the `minefield` namespace. Read more about 
 
 
 ## Setup the guestbook
-Build the docker image according to guestbook/README.md
+Build the docker image according to guestbook/README.md. Upload the docker image to your docker registry and change k8s/guestbook.rc.yaml accordingly.
 
 - Create the replication controller for the guestbook:
     `kubectl create -f k8s/guestbook.rc.yaml --namespace=minefield`
@@ -123,7 +123,7 @@ Build the docker image according to guestbook/README.md
 - Create the service for the guestbook:
     `kubectl create -f k8s/guestbook.service.yaml --namespace=minefield`
 
-The service will create a load balancer. The public IP will be visible after some time. Call `watch 'kubectl get services --all-namespaces'` to inspect.
+The service will create a load balancer. The public IP will be visible after some time. Call `watch 'kubectl get services --namespace=minefield'` to inspect.
 
 ## Ingress meets Let's Encrypt
 TODO: Update and clean up.
