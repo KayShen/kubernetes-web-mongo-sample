@@ -11,3 +11,4 @@ spec:
   selector:
     name: guestbook
   type: LoadBalancer
+  loadBalancerIP: 130.211.97.59
