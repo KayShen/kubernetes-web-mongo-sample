@@ -1,4 +1,4 @@
-# Project: server-minefield
+# Project: guestbook
 FROM java:8
 
 COPY stage /opt/guestbook

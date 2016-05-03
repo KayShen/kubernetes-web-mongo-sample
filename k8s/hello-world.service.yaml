@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: letsencryptor
-  name: letsencryptor
+    name: hello-world
+  name: hello-world
 spec:
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 80
+      targetPort: 80
       name: http
   selector:
-    name: letsencryptor
+    name: hello-world
   type: NodePort
