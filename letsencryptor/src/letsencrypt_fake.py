@@ -1,2 +1,0 @@
-class Letsencrypt(object):
-    pass
