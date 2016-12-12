@@ -124,6 +124,3 @@ Build the docker image according to guestbook/README.md. Upload the docker image
     `kubectl create -f k8s/guestbook.service.yaml --namespace=minefield`
 
 The service will create a load balancer. The public IP will be visible after some time. Call `watch 'kubectl get services --namespace=minefield'` to inspect.
-
-## Ingress meets Let's Encrypt
-See https://github.com/egymgmbh/kubernetes-letsencrypt.
